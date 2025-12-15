@@ -9,8 +9,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./../../modules/graphics.nix
-      ./../../modules/videogames.nix
-      ./../../modules/browser.nix
       ./../../modules/nixos/core/boot.nix
       ./../../modules/nixos/core/network.nix
       ./../../modules/nixos/core/locale.nix
