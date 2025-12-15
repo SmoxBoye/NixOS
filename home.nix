@@ -6,13 +6,9 @@
   home.homeDirectory = "/home/smoxboye";
   home.stateVersion = "25.11";
 
-  # Packages that were in users.users.smoxboye.packages
+  # User packages
   home.packages = with pkgs; [
     kdePackages.kate
-  ];
-
-  # Packages that were in environment.systemPackages (user-specific)
-  home.packages = with pkgs; [
     vesktop
     git
     helix
