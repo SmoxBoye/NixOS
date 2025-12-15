@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  # Home Manager settings
+  home.username = "smoxboye";
+  home.homeDirectory = "/home/smoxboye";
+  home.stateVersion = "25.11";
+
   # User packages
   home.packages = with pkgs; [
     kdePackages.kate
