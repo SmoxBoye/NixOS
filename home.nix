@@ -18,7 +18,6 @@
 
   # Import Home Manager modules
   imports = [
-    ../../modules/home-manager/browser.nix
-    ../../modules/home-manager/videogames.nix
+    ./modules/home-manager/browser.nix
   ];
 }
