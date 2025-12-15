@@ -52,10 +52,6 @@
     isNormalUser = true;
     description = "Simon Bengtsson";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
   };
 
 
@@ -63,7 +59,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  programs.yazi.enable = true;
+  
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -73,12 +69,6 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-    vesktop
-    git
-    helix
-    playerctl
-    ghostty
-    lazygit
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
