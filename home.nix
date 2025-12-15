@@ -1,11 +1,6 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, ... }:
 
 {
-  # Home Manager settings
-  home.username = "smoxboye";
-  home.homeDirectory = "/home/smoxboye";
-  home.stateVersion = "25.11";
-
   # User packages
   home.packages = with pkgs; [
     kdePackages.kate
@@ -17,9 +12,13 @@
     lazygit
   ];
 
-  # Enable programs that were system-wide
+  # Enable programs
   programs.yazi.enable = true;
-
-  # Home Manager specific configurations can go here
   programs.home-manager.enable = true;
+
+  # Import Home Manager modules
+  imports = [
+    ../../modules/home/browser.nix
+    ../../modules/home/videogames.nix
+  ];
 }
