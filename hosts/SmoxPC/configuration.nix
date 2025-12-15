@@ -8,11 +8,11 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./../../modules/graphics.nix
-      ./../../modules/videogames.nix
       ./../../modules/nixos/core/boot.nix
       ./../../modules/nixos/core/network.nix
       ./../../modules/nixos/core/locale.nix
+      ./../../modules/nixos/graphics.nix
+      ./../../modules/nixos/gaming.nix
     ];
 
 
@@ -57,8 +57,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
