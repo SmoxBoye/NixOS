@@ -1,6 +1,3 @@
-
-
-
 { config, pkgs, ... }:
 {
     programs.steam = {
@@ -46,7 +43,7 @@
       capSysNice = false;
     };
 
-    
+    environment.systemPackages = with pkgs; [ mangohud gamemode ];
 
 
 }
