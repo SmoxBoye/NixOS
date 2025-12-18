@@ -5,17 +5,16 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../modules/nixos/core/boot.nix
-      ../../modules/nixos/core/network.nix
-      ../../modules/nixos/core/locale.nix
-      ../../modules/nixos/graphics.nix
-      ../../modules/nixos/gaming.nix
-      ../../modules/nixos/development.nix
-    ];
-
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../modules/nixos/core/boot.nix
+    ../../modules/nixos/core/network.nix
+    ../../modules/nixos/core/locale.nix
+    ../../modules/nixos/graphics.nix
+    ../../modules/nixos/gaming.nix
+    ../../modules/nixos/development.nix
+  ];
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
@@ -51,22 +50,25 @@
   users.users.smoxboye = {
     isNormalUser = true;
     description = "Simon Bengtsson";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
-
-
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
