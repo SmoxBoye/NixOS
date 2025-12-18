@@ -12,7 +12,7 @@
   # Clone dotfiles repo to home directory
   home.activation.cloneHelixDotfiles = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     if [ ! -d "$HOME/.config/helix" ]; then
-      ${pkgs.git}/bin/git clone https://github.com/SmoxBoye/helix-config.git "$HOME/.config/helix"
+      ${pkgs.git}/bin/git clone git@github.com:SmoxBoye/helix-config.git "$HOME/.config/helix"
     fi
   '';
 
