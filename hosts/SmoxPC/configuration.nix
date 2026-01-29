@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -46,6 +46,24 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Add NTFS support
+  #boot.supportedFilesystems = [ "ntfs" ];
+
+  fileSystems =
+  let
+    ntfs-drives = [
+      "/home/smoxboye/mnt/2tbnvme"
+      "/home/smoxboye/mnt/window"
+    ];
+  in
+  lib.genAttrs ntfs-drives (path: {
+    options = [
+      "uid=1000" # REPLACE "$UID" WITH YOUR ACTUAL UID!
+      # "nofail"
+    ];
+  });
+
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.smoxboye = {
     isNormalUser = true;
@@ -63,6 +81,8 @@
     "nix-command"
     "flakes"
   ];
+
+  services.flatpak.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
