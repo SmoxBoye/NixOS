@@ -6,7 +6,7 @@
     lazygit
     uv
     nil
-    nixfmt-rfc-style
+    nixfmt
   ];
 
   # Clone dotfiles repo to home directory
