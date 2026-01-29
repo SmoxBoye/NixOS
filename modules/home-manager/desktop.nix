@@ -5,5 +5,9 @@
     kdePackages.kate
     playerctl
     obsidian
+    neofetch
+    pear-desktop
+    easyeffects
+    qpwgraph
   ];
 }
