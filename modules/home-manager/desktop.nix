@@ -9,5 +9,7 @@
     pear-desktop
     easyeffects
     qpwgraph
+    blender
+    obs-studio
   ];
 }
