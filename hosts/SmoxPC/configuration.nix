@@ -2,7 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -14,15 +19,49 @@
     ../../modules/nixos/graphics.nix
     ../../modules/nixos/gaming.nix
     ../../modules/nixos/development.nix
+    ../../modules/nixos/hyprland.nix
   ];
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   #services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # Enable SDDM with Wayland support for Hyprland
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
+
+  # Ensure Hyprland session is available in SDDM
+  services.displayManager.defaultSession = "hyprland";
+
+  # Enable Hyprland system-wide
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
+  # Configure XDG portals for Wayland
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    configPackages = [ pkgs.hyprland ];
+  };
+
+  # Wayland environment variables
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+    # NVIDIA Wayland specific
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    LIBVA_DRIVER_NAME = "nvidia";
+    __GL_GSYNC_ALLOWED = "1";
+    __GL_VRR_ALLOWED = "1";
+    WLR_DRM_NO_ATOMIC = "1";
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = false; # i don't own a printer lmao
@@ -50,19 +89,18 @@
   #boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems =
-  let
-    ntfs-drives = [
-      "/home/smoxboye/mnt/2tbnvme"
-      "/home/smoxboye/mnt/window"
-    ];
-  in
-  lib.genAttrs ntfs-drives (path: {
-    options = [
-      "uid=1000" # REPLACE "$UID" WITH YOUR ACTUAL UID!
-      # "nofail"
-    ];
-  });
-
+    let
+      ntfs-drives = [
+        "/home/smoxboye/mnt/2tbnvme"
+        "/home/smoxboye/mnt/window"
+      ];
+    in
+    lib.genAttrs ntfs-drives (path: {
+      options = [
+        "uid=1000" # REPLACE "$UID" WITH YOUR ACTUAL UID!
+        # "nofail"
+      ];
+    });
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.smoxboye = {
@@ -71,6 +109,8 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "video" # Needed for brightness control and screen capture
+      "input" # Needed for input device access in Wayland
     ];
   };
 
@@ -87,6 +127,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # System utilities
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
   ];
