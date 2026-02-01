@@ -51,6 +51,8 @@
     mangohud
     gamemode
     vintagestory
+    space-cadet-pinball
+    superTuxKart
   ];
 
 }
