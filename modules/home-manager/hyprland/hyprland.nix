@@ -12,6 +12,21 @@
     settings = {
       "$mod" = "SUPER";
 
+      # Monitor configuration
+      monitor = [
+        # Dell S2417DG (left screen) - 2560x1440@120Hz with VRR
+        "DP-3, 2560x1440@120, 0x0, 1.0, vrr, 0"
+        # CMT GP27-FUS (middle main screen) - 4K@120Hz with VRR
+        "HDMI-A-1 ,3840x2160@120, 2560x0, 1.5, vrr, 0"
+        # Dell U2415 (right screen) - 1920x1200@60Hz, portrait (counterclockwise)
+        "DP-2 ,1920x1200@60, 5120x0, 1.0, transform, 1"
+      ];
+
+      # Enable VRR globally
+      misc = {
+        vrr = 1;
+      };
+
       # Window management keybinds
       bind = [
         "$mod, Q, killactive"
@@ -47,6 +62,11 @@
         )
       );
 
+      bindm = [
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
+      ];
+
       # Startup applications
       exec-once = [
         "waybar"
@@ -67,16 +87,15 @@
 
       # Input configuration
       input = {
-        kb_layout = "us";
+        kb_layout = "se";
         follow_mouse = 1;
         sensitivity = 0;
       };
 
       # Window rules
-      windowrulev2 = [
-        "float, class:^(rofi)$"
-        "float, class:^(yazi)$"
-        "float, class:^(swaync)$"
+      windowrule = [
+        "match:class rofi, float on"
+        "match:class swaync, float on"
       ];
     };
   };
