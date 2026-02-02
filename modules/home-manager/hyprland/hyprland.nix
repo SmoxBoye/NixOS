@@ -76,6 +76,7 @@
         "swaync"
         "hyprpolkitagent" # Start polkit agent
         "[workspace 1 silent] kitty"
+        "deltatune"
       ];
 
       # Visual settings
