@@ -5,6 +5,9 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Deltatune
+    deltatune.url = "github:jesperls/deltatune-linux"; # Thanks Jesper
   };
 
   outputs =
