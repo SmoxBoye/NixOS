@@ -27,6 +27,7 @@
       # Enable VRR globally
       misc = {
         vrr = 1;
+        middle_click_paste = false;
       };
 
       # Window management keybinds
@@ -71,7 +72,7 @@
 
       # Startup applications
       exec-once = [
-        "waybar"
+        "ashell"
         "swaync"
         "hyprpolkitagent" # Start polkit agent
         "[workspace 1 silent] kitty"

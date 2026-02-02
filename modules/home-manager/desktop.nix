@@ -21,7 +21,6 @@
     slurp
     swaynotificationcenter
     rofi
-    waybar
     yazi
     swww
     wlogout
@@ -33,5 +32,8 @@
     # System tray utilities
     power-profiles-daemon
     brightnessctl
+
+    # Fonts
+    noto-fonts
   ];
 }
