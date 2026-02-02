@@ -1,5 +1,23 @@
 {
   "nodes": {
+    "deltatune": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1765452443,
+        "narHash": "sha256-V2539JCAHUZaeHJxnU8AMi0hVGSehOvUAnj9rXRuS2w=",
+        "owner": "jesperls",
+        "repo": "deltatune-linux",
+        "rev": "da022dfb3a3138c2e5ccce16bd3de85642630b55",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jesperls",
+        "repo": "deltatune-linux",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -22,6 +40,22 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1765186076,
+        "narHash": "sha256-hM20uyap1a0M9d344I692r+ik4gTMyj60cQWO+hAYP8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "addf7cf5f383a3101ecfba091b98d0a1263dc9b8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1769461804,
         "narHash": "sha256-msG8SU5WsBUfVVa/9RPLaymvi5bI8edTavbIq3vRlhI=",
         "owner": "nixos",
@@ -38,8 +72,9 @@
     },
     "root": {
       "inputs": {
+        "deltatune": "deltatune",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       }
     }
   },
