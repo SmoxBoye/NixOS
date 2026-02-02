@@ -6,12 +6,14 @@
       workspaces = {
         visibility_mode = "MonitorSpecific";
       };
+      position = "Bottom";
       modules = {
         left = [
           "Workspaces"
         ];
         center = [
           "WindowTitle"
+          "Tray"
         ];
         right = [
           "SystemInfo"
