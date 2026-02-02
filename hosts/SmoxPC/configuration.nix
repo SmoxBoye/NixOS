@@ -44,8 +44,18 @@
   # Configure XDG portals for Wayland
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    configPackages = [ pkgs.hyprland ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
+    ];
+    config = {
+      common = {
+        default = [
+          "hyprland"
+          "gtk"
+        ];
+      };
+    };
   };
 
   # Wayland environment variables

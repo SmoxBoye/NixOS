@@ -17,7 +17,7 @@
         # Dell S2417DG (left screen) - 2560x1440@120Hz with VRR
         "DP-3, 2560x1440@120, auto-left, 1.25, vrr, 0"
         # CMT GP27-FUS (middle main screen) - 4K@120Hz with VRR
-        "HDMI-A-1 ,3840x2160@120, auto, 1.5, vrr, 0"
+        "HDMI-A-1 ,3840x2160@120, 0x0, 1.5, vrr, 0"
         # Dell U2415 (right screen) - 1920x1200@60Hz, portrait (counterclockwise)
         "DP-2 ,1920x1200@60, auto-center-right, 1.0, transform, 1"
         # Misc monitor catchall https://wiki.hypr.land/Configuring/Monitors/
@@ -100,6 +100,7 @@
       windowrule = [
         "match:class rofi, float on"
         "match:class swaync, float on"
+        "match:class xdg-desktop-portal-gtk, float on"
       ];
     };
   };
