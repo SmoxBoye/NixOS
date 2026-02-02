@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     hyprpolkitagent # Polkit agent for Hyprland
     noto-fonts # Font family for proper text rendering
+    font-awesome
   ];
 
   # Font configuration for proper text rendering
