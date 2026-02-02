@@ -42,6 +42,7 @@
         "$mod, L, exec, swaync-client -t"
         "$mod, B, exec, firefox"
         ", Print, exec, grimblast copy area"
+        "Shift_L&$mod, S, exec, grimblast copy area" # Windows muscle memory has cursed me lmao
 
         # Focus movement
         "$mod, left, movefocus, l"
