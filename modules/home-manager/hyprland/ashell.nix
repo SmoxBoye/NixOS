@@ -4,17 +4,17 @@
     enable = true;
     settings = {
       workspaces = {
-        visibilityMode = "MonitorSpecific";
+        visibility_mode = "MonitorSpecific";
       };
       modules = {
         left = [
           "Workspaces"
         ];
         center = [
-          "Window Title"
+          "WindowTitle"
         ];
         right = [
-          "System Info"
+          "SystemInfo"
           [
             "Clock"
             "Privacy"
