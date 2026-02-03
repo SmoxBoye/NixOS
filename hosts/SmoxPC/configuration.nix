@@ -71,6 +71,10 @@
     __GL_GSYNC_ALLOWED = "1";
     __GL_VRR_ALLOWED = "1";
     WLR_DRM_NO_ATOMIC = "1";
+    # Hyprland
+    WLR_NO_HARDWARE_CURSORS = "1";
+    XCURSOR_THEME = "rose-pine-hyprcursor";
+    XCURSOR_SIZE = 24;
   };
 
   # Enable CUPS to print documents.
