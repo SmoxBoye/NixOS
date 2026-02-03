@@ -12,6 +12,10 @@
     settings = {
       "$mod" = "SUPER";
 
+      cursor = {
+        no_hardware_cursors = true;
+      };
+
       # Monitor configuration
       monitor = [
         # Dell S2417DG (left screen) - 2560x1440@120Hz with VRR
@@ -102,6 +106,7 @@
         "match:class rofi, float on"
         "match:class swaync, float on"
         "match:class xdg-desktop-portal-gtk, float on"
+        "match:class solaar, float on"
       ];
     };
   };
