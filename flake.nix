@@ -8,6 +8,12 @@
 
     # Deltatune
     deltatune.url = "github:jesperls/deltatune-linux"; # Thanks Jesper
+
+    rose-pine-hyprcursor = {
+      url = "github:ndom91/rose-pine-hyprcursor";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprlang.follows = "nixpkgs";
+    };
   };
 
   outputs =

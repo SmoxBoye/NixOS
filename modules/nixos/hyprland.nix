@@ -1,10 +1,18 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   # Essential system packages for Hyprland and Wayland
   environment.systemPackages = with pkgs; [
     hyprpolkitagent # Polkit agent for Hyprland
     noto-fonts # Font family for proper text rendering
     font-awesome
+    hyprcursor
+    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
+    hyprlang
   ];
 
   # Font configuration for proper text rendering
