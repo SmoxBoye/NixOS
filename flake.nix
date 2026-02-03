@@ -9,18 +9,27 @@
     # Deltatune
     deltatune.url = "github:jesperls/deltatune-linux"; # Thanks Jesper
 
+    # Cursor
     rose-pine-hyprcursor = {
       url = "github:ndom91/rose-pine-hyprcursor";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprlang.follows = "nixpkgs";
     };
-  };
 
+    # Solar but actually updated to the latest version unlike the nixpkg
+    solaar = {
+      # url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz"; # For latest stable version
+      url = "https://flakehub.com/f/Svenum/Solaar-Flake/0.1.7.tar.gz"; # uncomment line for solaar version 1.1.19
+      # url = "github:Svenum/Solaar-Flake/main"; # Uncomment line for latest unstable version
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
   outputs =
     {
       self,
       nixpkgs,
       home-manager,
+      solaar,
       ...
     }@inputs:
     {
@@ -37,6 +46,7 @@
             home-manager.users.smoxboye = import ./home.nix;
             home-manager.extraSpecialArgs = { inherit inputs; };
           }
+          solaar.nixosModules.default
         ];
       };
     };
