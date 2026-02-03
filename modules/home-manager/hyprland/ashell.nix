@@ -24,7 +24,7 @@
         else
             printf '{"text": "Offline", "alt": "disconnected"}\n' 
         fi
-        sleep 60 & wait $!
+        sleep 300 & wait $!
       done 
     '';
   };
