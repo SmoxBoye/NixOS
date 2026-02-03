@@ -12,6 +12,7 @@
     qpwgraph
     blender
     obs-studio
+    signal-desktop
 
     # Essential applications referenced in keybinds
     kdePackages.dolphin
@@ -35,5 +36,12 @@
 
     # Fonts
     noto-fonts
+
+    # Bruh
+    usbutils
+    tinyxxd
+    hidrd
+    jq
+
   ];
 }
