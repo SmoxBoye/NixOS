@@ -58,6 +58,7 @@
     superTuxKart
     libratbag
     upower
+    xorg.xrandr
   ];
 
 }

@@ -13,6 +13,7 @@
     hyprcursor
     inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
     hyprlang
+    # hyprshutdown
   ];
 
   # Font configuration for proper text rendering
