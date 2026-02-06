@@ -43,5 +43,6 @@
     hidrd
     jq
 
+    protonplus
   ];
 }
