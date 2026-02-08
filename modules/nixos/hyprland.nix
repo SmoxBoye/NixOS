@@ -11,9 +11,10 @@
     noto-fonts # Font family for proper text rendering
     font-awesome
     hyprcursor
-    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
+    inputs.rose-pine-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
     hyprlang
-    # hyprshutdown
+    hyprshutdown
+
   ];
 
   # Font configuration for proper text rendering
