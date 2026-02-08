@@ -5,6 +5,7 @@
     git
     lazygit
     uv
+    cudaPackages.cudnn
     nil
     nixfmt
     nerd-fonts.jetbrains-mono
