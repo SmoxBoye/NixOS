@@ -46,7 +46,7 @@
         "$mod, Return, exec, kitty"
         "$mod, Space, exec, rofi -show drun"
         "$mod, E, exec, dolphin"
-        "$mod, T, exec, yazi"
+        # "$mod, T, exec, yazi"
         "$mod, F, fullscreen"
         "$mod, W, togglefloating"
         "$mod, L, exec, swaync-client -t"
