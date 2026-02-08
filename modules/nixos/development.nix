@@ -9,5 +9,5 @@
     ];
   };
 
-  nixpkgs.config.cudaSupport = true;
+  # nixpkgs.config.cudaSupport = true;
 }

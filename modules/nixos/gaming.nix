@@ -48,7 +48,7 @@
   };
 
   services.ratbagd.enable = true;
-  hardware.logitech.enable = true;
+  hardware.logitech.wireless.enable = true;
   services.solaar.enable = true;
   environment.systemPackages = with pkgs; [
     mangohud
