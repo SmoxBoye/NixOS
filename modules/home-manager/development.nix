@@ -25,10 +25,17 @@
   programs.bash = {
     enable = true;
     shellAliases = {
+      # Old nix commands
       nbs = "sudo nixos-rebuild switch --flake $NIXCONFDIR";
       nbb = "sudo nixos-rebuild boot --flake $NIXCONFDIR";
       nbu = "sudo nixos-rebuild switch --upgrade --flake $NIXCONFDIR";
+      # New nix commands
       nfu = "sudo nix flake update --flake $NIXCONFDIR";
+      nos = "nh os switch $NIXCONFDIR --ask";
+      nosu = "nh os switch $NIXCONFDIR --update --ask";
+      nhs = "nh home switch $NIXCONFDIR --ask";
+      nca = "nh clean all -n -k 5 -K 7d";
+      # haha funny
       bruh = "uvx pycowsay Brrrrrrrrrrrrrrrrrrrrrrrr";
       nconf = "hx $NIXCONFDIR";
       skibiditoilet = "uvx pycowsay Skibidi Toilet";
@@ -40,6 +47,10 @@
     bashrcExtra = ''
       hyprreload() {
         pkill "$1" && hyprctl dispatch exec "$1"
+      }
+
+      ns() {
+        nh search --limit 5 "$1"
       }
     '';
     profileExtra = ''
