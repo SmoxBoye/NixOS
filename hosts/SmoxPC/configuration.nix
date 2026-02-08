@@ -2,27 +2,83 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../../modules/nixos/core/nix.nix
     ../../modules/nixos/core/boot.nix
     ../../modules/nixos/core/network.nix
     ../../modules/nixos/core/locale.nix
     ../../modules/nixos/graphics.nix
     ../../modules/nixos/gaming.nix
     ../../modules/nixos/development.nix
+    ../../modules/nixos/hyprland.nix
   ];
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   #services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # # Enable SDDM with Wayland support for Hyprland
+  # services.displayManager.sddm = {
+  #   enable = true;
+  #   wayland.enable = true;
+  # };
+
+  services.getty.autologinUser = "smoxboye";
+
+  # Ensure Hyprland session is available in SDDM
+  # services.displayManager.defaultSession = "hyprland";
+
+  # Enable Hyprland system-wide
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
+  # Configure XDG portals for Wayland
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
+    ];
+    config = {
+      common = {
+        default = [
+          "hyprland"
+          "gtk"
+        ];
+      };
+    };
+  };
+
+  # Wayland environment variables
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+    # NVIDIA Wayland specific
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    LIBVA_DRIVER_NAME = "nvidia";
+    __GL_GSYNC_ALLOWED = "1";
+    __GL_VRR_ALLOWED = "1";
+    WLR_DRM_NO_ATOMIC = "1";
+    # Hyprland
+    WLR_NO_HARDWARE_CURSORS = "1";
+    XCURSOR_THEME = "rose-pine-hyprcursor";
+    XCURSOR_SIZE = 24;
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = false; # i don't own a printer lmao
@@ -46,6 +102,23 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Add NTFS support
+  #boot.supportedFilesystems = [ "ntfs" ];
+
+  fileSystems =
+    let
+      ntfs-drives = [
+        "/home/smoxboye/mnt/2tbnvme"
+        "/home/smoxboye/mnt/window"
+      ];
+    in
+    lib.genAttrs ntfs-drives (path: {
+      options = [
+        "uid=1000" # REPLACE "$UID" WITH YOUR ACTUAL UID!
+        # "nofail"
+      ];
+    });
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.smoxboye = {
     isNormalUser = true;
@@ -53,6 +126,8 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "video" # Needed for brightness control and screen capture
+      "input" # Needed for input device access in Wayland
     ];
   };
 
@@ -64,9 +139,12 @@
     "flakes"
   ];
 
+  services.flatpak.enable = true;
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # System utilities
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
   ];
