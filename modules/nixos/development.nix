@@ -6,6 +6,11 @@
       # Qt
       qt6.qtbase
       qt6.qtwayland
+      cudaPackages.cudatoolkit
+      cudaPackages.cudnn
+      cudaPackages.libcublas
+      cudaPackages.libcurand
+      cudaPackages.libcufft
     ];
   };
 

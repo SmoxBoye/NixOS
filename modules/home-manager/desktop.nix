@@ -11,7 +11,6 @@
     easyeffects
     qpwgraph
     blender
-    obs-studio
     signal-desktop
 
     # Essential applications referenced in keybinds
