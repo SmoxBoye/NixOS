@@ -99,6 +99,7 @@
         # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         # "col.inactive_border" = "rgba(595959aa)";
         layout = "dwindle";
+        allow_tearing = true;
       };
 
       # Input configuration
@@ -147,10 +148,10 @@
           on-timeout = "hyprctl dispatch dpms off"; # screen off when timeout has passed
           on-resume = "hyprctl dispatch dpms on && brightnessctl -r"; # screen on when activity is detected after timeout has fired.
         }
-        {
-          timeout = 1800; # 30 min
-          on-timeout = "systemctl suspend";
-        }
+        # {
+        #   timeout = 1800; # 30 min
+        #   on-timeout = "systemctl suspend";
+        # }
       ];
     };
   };
