@@ -13,6 +13,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../../modules/nixos/core/nix.nix
     ../../modules/nixos/core/boot.nix
     ../../modules/nixos/core/network.nix
     ../../modules/nixos/core/locale.nix
@@ -26,14 +27,16 @@
   # You can disable this if you're only using the Wayland session.
   #services.xserver.enable = true;
 
-  # Enable SDDM with Wayland support for Hyprland
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
+  # # Enable SDDM with Wayland support for Hyprland
+  # services.displayManager.sddm = {
+  #   enable = true;
+  #   wayland.enable = true;
+  # };
+
+  services.getty.autologinUser = "smoxboye";
 
   # Ensure Hyprland session is available in SDDM
-  services.displayManager.defaultSession = "hyprland";
+  # services.displayManager.defaultSession = "hyprland";
 
   # Enable Hyprland system-wide
   programs.hyprland = {
