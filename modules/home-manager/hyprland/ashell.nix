@@ -46,7 +46,9 @@
           alert = ".*low";
         }
       ];
-
+      window_title = {
+        truncate_title_after_length = 100;
+      };
       appearance = {
         style = "Gradient";
       };
@@ -80,6 +82,33 @@
         shutdown_command = "hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0'";
         reboot_cmd = "hyprshutdown -t 'Restarting...' --post-cmd 'reboot'";
         remove_airplane_btn = true;
+      };
+
+      appearance = {
+        success_color = "#a6e3a1";
+        text_color = "#cdd6f4";
+        workspace_colors = [
+          "#fab387"
+          "#b4befe"
+          "#cba6f7"
+        ];
+        primary_color = {
+          base = "#fab387";
+          text = "#1e1e2e";
+        };
+        danger_color = {
+          base = "#f38ba8";
+          weak = "#f9e2af";
+        };
+        background_color = {
+          base = "#1e1e2e";
+          weak = "#313244";
+          strong = "#45475a";
+        };
+        secondary_color = {
+          base = "#11111b";
+          strong = "#1b1b25";
+        };
       };
     };
   };
