@@ -47,9 +47,18 @@
     capSysNice = false;
   };
 
+  services.ratbagd.enable = true;
+  hardware.logitech.wireless.enable = true;
+  services.solaar.enable = true;
   environment.systemPackages = with pkgs; [
     mangohud
     gamemode
+    vintagestory
+    space-cadet-pinball
+    superTuxKart
+    libratbag
+    upower
+    xorg.xrandr
   ];
 
 }
