@@ -49,9 +49,9 @@
       window_title = {
         truncate_title_after_length = 100;
       };
-      appearance = {
-        style = "Gradient";
-      };
+      # appearance = {
+      #   style = "Island";
+      # };
       workspaces = {
         visibility_mode = "MonitorSpecific";
       };
