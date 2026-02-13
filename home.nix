@@ -24,5 +24,6 @@
     ./modules/home-manager/hyprland/hyprland.nix
     ./modules/home-manager/hyprland/ashell.nix
     ./modules/home-manager/deltatune.nix
+    ./modules/home-manager/obs.nix
   ];
 }
