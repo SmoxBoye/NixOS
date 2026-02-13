@@ -89,6 +89,8 @@
         "[workspace 1 silent] kitty"
         "deltatune"
         "xrandr --output HDMI-A-1 --primary"
+        "hyprpaper"
+        "hyprsunset"
       ];
 
       # Visual settings
@@ -96,8 +98,8 @@
         gaps_in = 3;
         gaps_out = 5;
         border_size = 1;
-        # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        # "col.inactive_border" = "rgba(595959aa)";
+        "col.active_border" = "rgba(294559cc) rgba(295935cc) 45deg";
+        "col.inactive_border" = "rgba(595959aa)";
         layout = "dwindle";
         allow_tearing = true;
       };
@@ -167,6 +169,30 @@
         {
           time = "21:00";
           temperature = 5500;
+        }
+      ];
+    };
+  };
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      splash = false;
+
+      wallpaper = [
+        {
+          monitor = "DP-3";
+          path = "~/Pictures/Wallpapers/1a8xse74olce1.png";
+          fit_mode = "cover";
+        }
+        {
+          monitor = "DP-2";
+          path = "~/Pictures/Wallpapers/2lf9aqtcdice1.png";
+          fit_mode = "cover";
+        }
+        {
+          monitor = "HDMI-A-1";
+          path = "~/Pictures/Wallpapers/1a8xse74olce1.png";
+          fit_mode = "cover";
         }
       ];
     };
