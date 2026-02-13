@@ -43,5 +43,7 @@
     jq
 
     protonplus
+
+    easyeffects
   ];
 }
