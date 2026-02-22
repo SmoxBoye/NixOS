@@ -23,6 +23,12 @@
       # url = "github:Svenum/Solaar-Flake/main"; # Uncomment line for latest unstable version
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # myna = {
+    #   url = "path:/home/smoxboye/programming/myna";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   # inputs.quickshell.follows = "quickshell"; # or add quickshell to your inputs if not already
+    # };
   };
   outputs =
     {
