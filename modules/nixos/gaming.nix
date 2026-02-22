@@ -1,36 +1,58 @@
 { config, pkgs, ... }:
 {
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    extraCompatPackages = with pkgs; [ proton-ge-bin ];
-
-    gamescopeSession.enable = true;
-
-    package = pkgs.steam.override {
-      extraPkgs =
-        pkgs: with pkgs; [
-          xorg.libXcursor
-          xorg.libXi
-          xorg.libXinerama
-          xorg.libXScrnSaver
-          libpng
-          libpulseaudio
-          libvorbis
-          stdenv.cc.cc.lib
-          libkrb5
-          keyutils
-          wayland
-          libxkbcommon
-          vulkan-loader
-          vulkan-validation-layers
-          gamescope
+  programs.steam =
+    let
+      patchedBwrap = pkgs.bubblewrap.overrideAttrs (o: {
+        patches = (o.patches or [ ]) ++ [
+          ./bwrap.patch
         ];
-    };
+      });
+    in
+    {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      extraCompatPackages = with pkgs; [ proton-ge-bin ];
 
-    extraPackages = with pkgs; [ mangohud ];
-  };
+      gamescopeSession.enable = true;
+
+      package = pkgs.steam.override {
+        buildFHSEnv = (
+          args:
+          (
+            (pkgs.buildFHSEnv.override {
+              bubblewrap = patchedBwrap;
+            })
+            (
+              args
+              // {
+                extraBwrapArgs = (args.extraBwrapArgs or [ ]) ++ [ "--cap-add ALL" ];
+              }
+            )
+          )
+        );
+        extraPkgs =
+          pkgs: with pkgs; [
+            xorg.libXcursor
+            xorg.libXi
+            xorg.libXinerama
+            xorg.libXScrnSaver
+            libpng
+            libpulseaudio
+            libvorbis
+            stdenv.cc.cc.lib
+            libkrb5
+            keyutils
+            wayland
+            libxkbcommon
+            vulkan-loader
+            vulkan-validation-layers
+            gamescope
+          ];
+      };
+
+      extraPackages = with pkgs; [ mangohud ];
+    };
 
   programs.gamemode = {
     enable = true;
@@ -42,6 +64,7 @@
     };
   };
 
+  hardware.steam-hardware.enable = true;
   programs.gamescope = {
     enable = true;
     capSysNice = false;
