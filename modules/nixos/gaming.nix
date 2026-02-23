@@ -1,30 +1,30 @@
 { config, pkgs, ... }:
 {
-  # programs.steam = {
-  #   enable = true;
-  #   package = pkgs.steam.override {
-  #     extraPkgs =
-  #       pkgs: with pkgs; [
-  #         xorg.libXcursor
-  #         xorg.libXi
-  #         xorg.libXinerama
-  #         xorg.libXScrnSaver
-  #         libpng
-  #         libpulseaudio
-  #         libvorbis
-  #         stdenv.cc.cc.lib
-  #         libkrb5
-  #         keyutils
-  #         wayland
-  #         libxkbcommon
-  #         vulkan-loader
-  #         vulkan-validation-layers
-  #         gamescope
-  #       ];
-  #   };
+  programs.steam = {
+    enable = true;
+    package = pkgs.steam.override {
+      extraPkgs =
+        pkgs: with pkgs; [
+          xorg.libXcursor
+          xorg.libXi
+          xorg.libXinerama
+          xorg.libXScrnSaver
+          libpng
+          libpulseaudio
+          libvorbis
+          stdenv.cc.cc.lib
+          libkrb5
+          keyutils
+          wayland
+          libxkbcommon
+          vulkan-loader
+          vulkan-validation-layers
+          gamescope
+        ];
+    };
 
-  #   extraPackages = with pkgs; [ mangohud ];
-  # };
+    extraPackages = with pkgs; [ mangohud ];
+  };
 
   programs.gamemode = {
     enable = true;
@@ -56,5 +56,9 @@
     upower
     xorg.xrandr
   ];
+  services.monado = {
+    enable = true;
+    defaultRuntime = true; # Register as default OpenXR runtime
+  };
 
 }
