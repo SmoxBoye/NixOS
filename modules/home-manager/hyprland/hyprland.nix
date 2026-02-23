@@ -51,6 +51,9 @@
         "$mod, W, togglefloating"
         "$mod, L, exec, swaync-client -t"
         "$mod, B, exec, firefox"
+
+        "$mod, G, exec, myna"
+
         ", Print, exec, grimblast copy area"
         "Shift_L&$mod, S, exec, grimblast copy area" # Windows muscle memory has cursed me lmao
 
@@ -91,6 +94,7 @@
         "xrandr --output HDMI-A-1 --primary"
         "hyprpaper"
         "hyprsunset"
+        "udiskie"
       ];
 
       # Visual settings
