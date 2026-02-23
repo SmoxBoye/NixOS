@@ -60,5 +60,9 @@
     enable = true;
     defaultRuntime = true; # Register as default OpenXR runtime
   };
+  programs.envision = {
+    enable = true;
+    openFirewall = true; # This is set true by default
+  };
 
 }

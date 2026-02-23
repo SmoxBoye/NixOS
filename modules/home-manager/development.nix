@@ -9,6 +9,7 @@
     nil
     nixfmt
     nerd-fonts.jetbrains-mono
+    kdePackages.qtdeclarative
   ];
 
   # Clone dotfiles repo to home directory
