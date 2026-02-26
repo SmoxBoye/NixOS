@@ -79,7 +79,7 @@
           "Audio"
           "Network"
         ];
-        shutdown_command = "hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0'";
+        shutdown_command = "hyprshutdown -t 'Shutting down...' --post-cmd 'systemctl poweroff'";
         reboot_cmd = "hyprshutdown -t 'Restarting...' --post-cmd 'reboot'";
         remove_airplane_btn = true;
       };
