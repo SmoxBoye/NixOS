@@ -61,4 +61,14 @@
     };
   };
 
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
+  programs.yazi = {
+    enable = true;
+    programs.yazi.shellWrapperName = "y";
+  };
+
 }
