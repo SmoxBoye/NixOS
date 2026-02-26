@@ -51,7 +51,7 @@
     gamemode
     vintagestory
     space-cadet-pinball
-    superTuxKart
+    supertuxkart
     libratbag
     upower
     xrandr
