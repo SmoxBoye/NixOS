@@ -21,7 +21,6 @@
     slurp
     swaynotificationcenter
     rofi
-    yazi
     swww
     wlogout
 
