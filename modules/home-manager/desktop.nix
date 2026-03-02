@@ -46,6 +46,8 @@
     easyeffects
     unzip
     bs-manager
+
+    prismlauncher
   ];
 
   services.udiskie = {
