@@ -5,6 +5,15 @@
   ...
 }:
 {
+  programs.hyprland = {
+    enable = true;
+    # set the flake package
+    package = inputs.hyprnix.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    # make sure to also set the portal package, so that they are in sync
+    portalPackage =
+      inputs.hyprnix.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
+
   # Essential system packages for Hyprland and Wayland
   environment.systemPackages = with pkgs; [
     hyprpolkitagent # Polkit agent for Hyprland

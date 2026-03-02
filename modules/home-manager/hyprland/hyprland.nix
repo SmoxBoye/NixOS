@@ -1,11 +1,20 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }:
+
+let
+  hyprnix = inputs.hyprnix.packages.${pkgs.stdenv.hostPlatform.system};
+
+in
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    # Set flake package
+    package = hyprnix.hyprland;
+    portalPackage = hyprnix.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
 
     systemd = {

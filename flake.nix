@@ -24,6 +24,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprnix.url = "github:hyprwm/hyprnix";
+
     # myna = {
     #   url = "path:/home/smoxboye/programming/myna";
     #   inputs.nixpkgs.follows = "nixpkgs";
