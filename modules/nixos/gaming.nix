@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   programs.steam = {
     enable = true;
@@ -60,5 +65,32 @@
   #   enable = true;
   #   defaultRuntime = true; # Register as default OpenXR runtime
   # };
+
+  services.sunshine = {
+    enable = true;
+    autoStart = false;
+    capSysAdmin = true; # only needed for Wayland -- omit this when using with Xorg
+    openFirewall = true;
+    package = pkgs.sunshine.override {
+      cudaSupport = true;
+      cudaPackages = pkgs.cudaPackages;
+    };
+    applications = {
+      apps = [
+        {
+          name = "Slay the Spire 2";
+          detached = "root -u smoxboye setsid steam steam://rungameid/2868840";
+        }
+        {
+          name = "Steam Big Picture";
+          image-path = "steam.png";
+          detached = [ "${lib.getExe pkgs.steam} steam://open/bigpicture" ];
+          auto-detach = "true";
+          wait-all = "true";
+          exit-timeout = "5";
+        }
+      ];
+    };
+  };
 
 }

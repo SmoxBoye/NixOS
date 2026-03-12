@@ -10,6 +10,7 @@
     nixfmt
     nerd-fonts.jetbrains-mono
     kdePackages.qtdeclarative
+    beamMinimal28Packages.elixir_1_19
   ];
 
   # Clone dotfiles repo to home directory
@@ -33,8 +34,8 @@
       nbu = "sudo nixos-rebuild switch --upgrade --flake $NIXCONFDIR";
       # New nix commands
       nfu = "sudo nix flake update --flake $NIXCONFDIR";
-      nos = "nh os switch $NIXCONFDIR --ask";
-      nosu = "nh os switch $NIXCONFDIR --update --ask";
+      nos = "nh os switch $NIXCONFDIR --ask --max-jobs 10";
+      nosu = "nh os switch $NIXCONFDIR --update --ask --max-jobs 10";
       nhs = "nh home switch $NIXCONFDIR --ask";
       nca = "nh clean all -n -k 5 -K 7d";
       # haha funny

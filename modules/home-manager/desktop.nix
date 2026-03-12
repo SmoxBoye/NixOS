@@ -6,7 +6,7 @@
     kdePackages.kate
     playerctl
     obsidian
-    neofetch
+    fastfetch
     pear-desktop
     easyeffects
     qpwgraph
@@ -43,11 +43,11 @@
 
     protonplus
 
-    easyeffects
     unzip
     bs-manager
 
     prismlauncher
+    dconf
   ];
 
   services.udiskie = {
@@ -70,6 +70,11 @@
   programs.yazi = {
     enable = true;
     shellWrapperName = "y";
+  };
+
+  services.easyeffects = {
+    enable = true;
+    preset = "Discord";
   };
 
 }
