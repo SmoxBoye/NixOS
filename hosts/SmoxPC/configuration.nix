@@ -50,6 +50,9 @@
           "hyprland"
           "gtk"
         ];
+        "org.freedesktop.impl.portal.OpenURI" = [
+          "gtk"
+        ];
       };
     };
   };
@@ -84,6 +87,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
@@ -135,8 +139,16 @@
 
   nix.settings = {
     substituters = [ "https://hyprland.cachix.org" ];
-    trusted-substituters = [ "https://hyprland.cachix.org" ];
-    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+    trusted-substituters = [
+      "https://hyprland.cachix.org"
+      "https://attic.xuyh0120.win/lantian"
+      "https://cache.garnix.io"
+    ];
+    trusted-public-keys = [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+    ];
   };
 
   services.flatpak.enable = true;

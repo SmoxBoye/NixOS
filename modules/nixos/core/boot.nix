@@ -18,5 +18,5 @@
   security.polkit.enable = true;
 
   # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_19;
+  boot.kernelPackages = pkgs.linuxKernel.packagesFor pkgs.cachyosKernels.linux-cachyos-latest-x86_64-v3;
 }
