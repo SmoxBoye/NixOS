@@ -21,7 +21,7 @@
     slurp
     swaynotificationcenter
     rofi
-    swww
+    awww
     wlogout
 
     # Essential Wayland utilities
@@ -34,6 +34,11 @@
 
     # Fonts
     noto-fonts
+    corefonts
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    noto-fonts-color-emoji
+    ipafont
 
     # Bruh
     usbutils
@@ -43,11 +48,31 @@
 
     protonplus
 
+    zip
     unzip
+    unrar
     bs-manager
 
     prismlauncher
     dconf
+    # pureref
+
+    qalculate-gtk
+
+    btop
+
+    smartmontools
+
+    ardour
+    cbonsai
+
+    qgis
+
+    ffmpeg-full
+    ckan
+    bc
+
+    aria2
   ];
 
   services.udiskie = {

@@ -33,7 +33,14 @@
   #   wayland.enable = true;
   # };
 
-  services.getty.autologinUser = "smoxboye";
+  # services.getty.autologinUser = "smoxboye";
+  systemd.services."getty@tty1" = {
+    overrideStrategy = "asDropin";
+    serviceConfig.ExecStart = [
+      ""
+      "@${pkgs.util-linux}/sbin/agetty agetty --autologin smoxboye --noclear %I $TERM"
+    ];
+  };
 
   # Ensure Hyprland session is available in SDDM
   # services.displayManager.defaultSession = "hyprland";
@@ -71,9 +78,9 @@
     __GL_VRR_ALLOWED = "1";
     WLR_DRM_NO_ATOMIC = "1";
     # Hyprland
-    WLR_NO_HARDWARE_CURSORS = "1";
+    # WLR_NO_HARDWARE_CURSORS = "1";
     XCURSOR_THEME = "rose-pine-hyprcursor";
-    XCURSOR_SIZE = 24;
+    XCURSOR_SIZE = 32;
   };
 
   # Enable CUPS to print documents.
@@ -89,7 +96,7 @@
     pulse.enable = true;
     wireplumber.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -138,16 +145,22 @@
   ];
 
   nix.settings = {
-    substituters = [ "https://hyprland.cachix.org" ];
-    trusted-substituters = [
-      "https://hyprland.cachix.org"
-      "https://attic.xuyh0120.win/lantian"
+    substituters = [
+      # "https://attic.xuyh0120.win/lantian"
       "https://cache.garnix.io"
+      "https://hyprland.cachix.org"
+      "https://cache.nixos-cuda.org"
     ];
+    # trusted-substituters = [
+    #   "https://hyprland.cachix.org"
+    #   "https://attic.xuyh0120.win/lantian"
+    #   "https://cache.garnix.io"
+    # ];
     trusted-public-keys = [
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+      # "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+      "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
     ];
   };
 
@@ -157,9 +170,12 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # System utilities
+    comma
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
   ];
+
+  programs.nix-index.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

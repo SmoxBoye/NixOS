@@ -24,20 +24,22 @@ in
 
     settings = {
       "$mod" = "SUPER";
-
-      cursor = {
-        no_hardware_cursors = true;
-      };
+      env = [
+        "HYPRCURSOR_SIZE,32"
+      ];
+      # cursor = {
+      #   no_hardware_cursors = true;
+      # };
       xwayland = {
         force_zero_scaling = true;
       };
       # Monitor configuration
       monitor = [
-        # Dell S2417DG (left screen) - 2560x1440@120Hz with VRR
-        "DP-3, 2560x1440@120, auto-left, 1.25, vrr, 0"
+        # Dell S2417DG (left screen) - 2560x1440@120Hz with VRR 1.25 scaling before
+        "DP-3, 2560x1440@120, auto-left, 1.0, vrr, 0"
         # CMT GP27-FUS (middle main screen) - 4K@120Hz with VRR
-        # "HDMI-A-1 ,3840x2160@120, 0x0, 1, vrr, 0"
-        "HDMI-A-1 ,3840x2160@120, 0x0, 1.5, vrr, 0"
+        "HDMI-A-1 ,3840x2160@120, 0x0, 1.0, vrr, 0"
+        # "HDMI-A-1 ,3840x2160@120, 0x0, 1.5, vrr, 0"
         # Dell U2415 (right screen) - 1920x1200@60Hz, portrait (counterclockwise)
         "DP-2 ,1920x1200@60, auto-center-right, 1.0, transform, 1"
         # Misc monitor catchall https://wiki.hypr.land/Configuring/Monitors/
@@ -59,7 +61,6 @@ in
         # "$mod, T, exec, yazi"
         "$mod, F, fullscreen"
         "$mod, W, togglefloating"
-        "$mod, L, exec, swaync-client -t"
         "$mod, B, exec, firefox"
 
         "$mod, G, exec, myna"
@@ -73,6 +74,14 @@ in
         "$mod, right, movefocus, r"
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
+
+        # Switch workspace with mouse
+        "$mod, mouse:275, workspace, r-1"
+        "$mod, mouse:276, workspace, r+1"
+
+        # Lock
+        "$mod, L, exec, hyprlock"
+
       ]
       ++ (
         # Workspaces - binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
@@ -95,8 +104,15 @@ in
         "$mod, mouse:273, resizewindow"
       ];
 
+      bindn = [
+        # Shell workspace preview
+        "$mod, SUPER_L, global, quickshell:toggle-doors"
+
+      ];
+
       # Startup applications
       exec-once = [
+        # "hyprlock"
         "ashell"
         "swaync"
         "hyprpolkitagent" # Start polkit agent
@@ -117,6 +133,17 @@ in
         "col.inactive_border" = "rgba(595959aa)";
         layout = "dwindle";
         allow_tearing = true;
+      };
+
+      animations = {
+        enabled = true;
+        bezier = [
+          "snappy, 0.4, 0, 0.2, 1"
+        ];
+        animation = [
+          "windows, 1, 1, snappy, popin"
+          "workspaces, 1, 2, snappy, slidefade"
+        ];
       };
 
       # Input configuration
@@ -214,6 +241,52 @@ in
           monitor = "HDMI-A-1";
           path = "~/Pictures/Wallpapers/1a8xse74olce1.png";
           fit_mode = "cover";
+        }
+      ];
+    };
+  };
+
+  programs.hyprlock = {
+    enable = true;
+    settings = {
+      general = {
+        hide_cursor = true;
+        ignore_empty_input = true;
+      };
+
+      animations = {
+        enabled = true;
+        fade_in = {
+          duration = 300;
+          bezier = "easeOutQuint";
+        };
+        fade_out = {
+          duration = 300;
+          bezier = "easeOutQuint";
+        };
+      };
+
+      background = [
+        {
+          path = "screenshot";
+          blur_passes = 3;
+          blur_size = 8;
+        }
+      ];
+
+      input-field = [
+        {
+          size = "200, 50";
+          position = "0, -80";
+          monitor = "";
+          dots_center = true;
+          fade_on_empty = false;
+          font_color = "rgb(202, 211, 245)";
+          inner_color = "rgb(91, 96, 120)";
+          outer_color = "rgb(24, 25, 38)";
+          outline_thickness = 5;
+          placeholder_text = "'<span foreground=\"\#\#cad3f5\">Password...</span>'";
+          shadow_passes = 2;
         }
       ];
     };

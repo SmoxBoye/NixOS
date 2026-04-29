@@ -26,13 +26,13 @@
 
     hyprnix.url = "github:hyprwm/hyprnix";
 
-    # myna = {
-    #   url = "path:/home/smoxboye/programming/myna";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   # inputs.quickshell.follows = "quickshell"; # or add quickshell to your inputs if not already
-    # };
+    myna = {
+      url = "github:smoxboye/myna";
+      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.quickshell.follows = "quickshell"; # or add quickshell to your inputs if not already
+    };
 
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    # nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
   outputs =
     {
@@ -55,9 +55,6 @@
             home-manager.useUserPackages = true;
             home-manager.users.smoxboye = import ./home.nix;
             home-manager.extraSpecialArgs = { inherit inputs; };
-            nixpkgs.overlays = [
-              inputs.nix-cachyos-kernel.overlays.pinned
-            ];
           }
           solaar.nixosModules.default
         ];

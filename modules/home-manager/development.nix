@@ -11,6 +11,16 @@
     nerd-fonts.jetbrains-mono
     kdePackages.qtdeclarative
     beamMinimal28Packages.elixir_1_19
+
+    godot
+
+    nodejs # i thought i would never see the day honestly
+    prettier
+    # vue-language-server
+    # typescript-language-server
+    #
+    wev
+    yt-dlp
   ];
 
   # Clone dotfiles repo to home directory
@@ -36,6 +46,8 @@
       nfu = "sudo nix flake update --flake $NIXCONFDIR";
       nos = "nh os switch $NIXCONFDIR --ask --max-jobs 10";
       nosu = "nh os switch $NIXCONFDIR --update --ask --max-jobs 10";
+      nob = "nh os boot $NIXCONFDIR --ask --max-jobs 10";
+      nobu = "nh os boot $NIXCONFDIR --ask --update --max-jobs 10";
       nhs = "nh home switch $NIXCONFDIR --ask";
       nca = "nh clean all -n -k 5 -K 7d";
       # haha funny
@@ -55,6 +67,22 @@
       ns() {
         nh search --limit 5 "$1"
       }
+
+      k3() {
+        local cmd_string="$1"
+
+        # If no command is provided, just open 3 blank kitties
+        if [ -z "$cmd_string" ]; then
+            cmd_string="exec bash"
+        else
+            # Ensure it ends with a shell so the window stays open
+            cmd_string="$cmd_string; exec bash"
+        fi
+
+        for i in {1..3}; do
+            kitty bash -c "$cmd_string" &
+        done
+      }
     '';
     profileExtra = ''
       if [[ "$(tty)" == "/dev/tty1" ]]; then
@@ -62,4 +90,10 @@
       fi
     '';
   };
+
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode.fhs;
+  };
+
 }

@@ -11,8 +11,12 @@
       cudaPackages.libcublas
       cudaPackages.libcurand
       cudaPackages.libcufft
+      cudaPackages.libnpp
+      cudaPackages.cuda_cudart
+      ffmpeg-full
+      stdenv.cc.cc
     ];
   };
 
-  # nixpkgs.config.cudaSupport = true;
+  nixpkgs.config.cudaSupport = true;
 }

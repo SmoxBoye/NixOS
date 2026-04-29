@@ -60,6 +60,25 @@
     libratbag
     upower
     xrandr
+
+    # Custom KSP Launcher
+    (makeDesktopItem {
+      name = "ksp";
+      desktopName = "Kerbal Space Program";
+      comment = "To the Mun!";
+      exec = "${writeShellScript "launch-ksp" ''
+        cd "/home/smoxboye/mnt/2tbnvme/Kerbal Space Program/KSP_linux"
+        ./gcroots/ksp-link/bin/ksp-environment
+      ''}";
+      icon = "/home/smoxboye/mnt/2tbnvme/Kerbal Space Program/KSP_linux/KSP_Data/Resources/UnityPlayer.png";
+      terminal = false;
+      categories = [ "Game" ];
+      keywords = [
+        "kerbal"
+        "space"
+        "ksp"
+      ];
+    })
   ];
   # services.monado = {
   #   enable = true;

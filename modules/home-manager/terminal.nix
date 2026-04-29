@@ -9,6 +9,7 @@
     enable = true;
     settings = {
       font_family = "JetBrainsMono Nerd Font";
+      font_size = "16";
     };
     themeFile = "Catppuccin-Mocha";
   };

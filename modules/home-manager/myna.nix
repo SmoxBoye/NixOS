@@ -1,7 +1,5 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 
 {
-  # imports = [ inputs.myna.homeManagerModules.default ];
-
-  # programs.myna.enable = true;
+  home.packages = [ inputs.myna.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 }

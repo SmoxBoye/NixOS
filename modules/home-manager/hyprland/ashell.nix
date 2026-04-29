@@ -9,18 +9,16 @@
       trap "echo 'Terminating...'; exit 0" SIGTERM SIGINT
 
       while true; do
-        PERCENT=$(solaar show "PRO X Wireless" | grep -i "Battery" | grep -oP '\d+%' | head -n1)
+        PERCENT=$(solaar show "PRO X SUPERLIGHT 2c" | grep -a -i "Battery:" | grep -oP '\d+' | head -n1)
         if [ -n "$PERCENT" ]; then
-          VALUE=''${PERCENT%\%}
-            
             # Determine the 'alt' status
-            if [ "$VALUE" -le 20 ]; then
+            if [ "$PERCENT" -le 20 ]; then
                 ALT="low"
             else
                 ALT="notification"
             fi
             
-            printf '{"text": "%s", "alt": "%s"}\n' "$PERCENT" "$ALT"
+            printf '{"text": "%s%%", "alt": "%s"}\n' "$PERCENT" "$ALT"
         else
             printf '{"text": "Offline", "alt": "disconnected"}\n' 
         fi
@@ -56,6 +54,11 @@
         visibility_mode = "MonitorSpecific";
       };
       position = "Bottom";
+      outputs = {
+        Targets = [
+          "HDMI-A-1"
+        ];
+      };
       modules = {
         left = [
           "Workspaces"
@@ -85,6 +88,7 @@
       };
 
       appearance = {
+        scale_factor = 1.5;
         success_color = "#a6e3a1";
         text_color = "#cdd6f4";
         workspace_colors = [
