@@ -32,6 +32,8 @@
       # inputs.quickshell.follows = "quickshell"; # or add quickshell to your inputs if not already
     };
 
+    nixpkgs-vs.url = "github:NixOS/nixpkgs/pull/512160/head";
+
     # nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
   outputs =

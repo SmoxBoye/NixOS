@@ -54,7 +54,7 @@
   environment.systemPackages = with pkgs; [
     mangohud
     gamemode
-    vintagestory
+    # vintagestory
     space-cadet-pinball
     supertuxkart
     libratbag

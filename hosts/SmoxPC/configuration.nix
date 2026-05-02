@@ -21,6 +21,7 @@
     ../../modules/nixos/gaming.nix
     ../../modules/nixos/development.nix
     ../../modules/nixos/hyprland.nix
+    ../../modules/nixos/vintagestory-pr.nix
   ];
 
   # Enable the X11 windowing system.
