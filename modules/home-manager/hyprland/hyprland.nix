@@ -22,152 +22,41 @@ in
       variables = [ "--all" ];
     };
 
+    configType = "lua";
+
     settings = {
       "$mod" = "SUPER";
       env = [
         "HYPRCURSOR_SIZE,32"
       ];
-      # cursor = {
-      #   no_hardware_cursors = true;
-      # };
       xwayland = {
         force_zero_scaling = true;
       };
-      # Monitor configuration
       monitor = [
-        # Dell S2417DG (left screen) - 2560x1440@120Hz with VRR 1.25 scaling before
         "DP-3, 2560x1440@120, auto-left, 1.0, vrr, 0"
-        # CMT GP27-FUS (middle main screen) - 4K@120Hz with VRR
         "HDMI-A-1 ,3840x2160@120, 0x0, 1.0, vrr, 0"
-        # "HDMI-A-1 ,3840x2160@120, 0x0, 1.5, vrr, 0"
-        # Dell U2415 (right screen) - 1920x1200@60Hz, portrait (counterclockwise)
         "DP-2 ,1920x1200@60, auto-center-right, 1.0, transform, 1"
-        # Misc monitor catchall https://wiki.hypr.land/Configuring/Monitors/
         ", preferred, auto, 1"
       ];
-
-      # Enable VRR globally
-      misc = {
-        vrr = 1;
-        middle_click_paste = false;
-      };
-
-      # Window management keybinds
-      bind = [
-        "$mod, Q, killactive"
-        "$mod, Return, exec, kitty"
-        "$mod, Space, exec, rofi -show drun"
-        "$mod, E, exec, dolphin"
-        # "$mod, T, exec, yazi"
-        "$mod, F, fullscreen"
-        "$mod, W, togglefloating"
-        "$mod, B, exec, firefox"
-
-        "$mod, G, exec, myna"
-        "$mod, P, exec, hyprctl dispatch dpms off && sleep 2 && hyprctl dispatch dpms on" # Fix my glitchy ass main screen when it flips out
-
-        ", Print, exec, grimblast copy area"
-        "Shift_L&$mod, S, exec, grimblast copy area" # Windows muscle memory has cursed me lmao
-
-        # Focus movement
-        "$mod, left, movefocus, l"
-        "$mod, right, movefocus, r"
-        "$mod, up, movefocus, u"
-        "$mod, down, movefocus, d"
-
-        # Switch workspace with mouse
-        "$mod, mouse:275, workspace, r-1"
-        "$mod, mouse:276, workspace, r+1"
-
-        # Lock
-        "$mod, L, exec, hyprlock"
-
-      ]
-      ++ (
-        # Workspaces - binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-        builtins.concatLists (
-          builtins.genList (
-            i:
-            let
-              ws = i + 1;
-            in
-            [
-              "$mod, code:1${toString i}, workspace, ${toString ws}"
-              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-            ]
-          ) 9
-        )
-      );
-
-      bindm = [
-        "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
-      ];
-
-      bindn = [
-        # Shell workspace preview
-        "$mod, SUPER_L, global, quickshell:toggle-doors"
-
-      ];
-
-      # Startup applications
-      exec-once = [
-        # "hyprlock"
-        "ashell"
-        "swaync"
-        "hyprpolkitagent" # Start polkit agent
-        "[workspace 1 silent] kitty"
-        "deltatune"
-        "xrandr --output HDMI-A-1 --primary"
-        "hyprpaper"
-        "hyprsunset"
-        "udiskie"
-      ];
-
-      # Visual settings
-      general = {
-        gaps_in = 3;
-        gaps_out = 5;
-        border_size = 1;
-        "col.active_border" = "rgba(294559cc) rgba(295935cc) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
-        layout = "dwindle";
-        allow_tearing = true;
-      };
-
-      animations = {
-        enabled = true;
-        bezier = [
-          "snappy, 0.4, 0, 0.2, 1"
-        ];
-        animation = [
-          "windows, 1, 1, snappy, popin"
-          "workspaces, 1, 2, snappy, slidefade"
-        ];
-      };
-
-      # Input configuration
-      input = {
-        kb_layout = "se";
-        follow_mouse = 1;
-        sensitivity = 0;
-      };
-
-      # Window rules
-      windowrule = [
-        "match:class rofi, float on"
-        "match:class swaync, float on"
-        "match:class xdg-desktop-portal-gtk, float on"
-        "match:class solaar, float on"
-      ];
     };
+
+    extraConfig = ''
+      require("smoxboye.init")
+    '';
   };
 
-  xdg.configFile."hypr/xdph.conf".text = ''
-    screencopy {
-      allow_token_by_default = true
-    }
-  '';
+  xdg.configFile = {
+    "hypr/smoxboye/init.lua".source = ./lua/init.lua;
+    "hypr/smoxboye/settings.lua".source = ./lua/settings.lua;
+    "hypr/smoxboye/binds.lua".source = ./lua/binds.lua;
+    "hypr/smoxboye/windowrules.lua".source = ./lua/windowrules.lua;
+    "hypr/smoxboye/startup.lua".source = ./lua/startup.lua;
+    "hypr/xdph.conf".text = ''
+      screencopy {
+        allow_token_by_default = true
+      }
+    '';
+  };
 
   services.hypridle = {
     enable = true;
