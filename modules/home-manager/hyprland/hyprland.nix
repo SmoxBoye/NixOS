@@ -25,19 +25,18 @@ in
     configType = "lua";
 
     settings = {
-      "$mod" = "SUPER";
-      env = [
-        "HYPRCURSOR_SIZE,32"
-      ];
-      xwayland = {
-        force_zero_scaling = true;
-      };
-      monitor = [
-        "DP-3, 2560x1440@120, auto-left, 1.0, vrr, 0"
-        "HDMI-A-1 ,3840x2160@120, 0x0, 1.0, vrr, 0"
-        "DP-2 ,1920x1200@60, auto-center-right, 1.0, transform, 1"
-        ", preferred, auto, 1"
-      ];
+      # env = [
+      #   "HYPRCURSOR_SIZE,32"
+      # ];
+      # xwayland = {
+      #   force_zero_scaling = true;
+      # };
+      # monitor = [
+      #   "DP-3, 2560x1440@120, auto-left, 1.0, vrr, 0"
+      #   "HDMI-A-1 ,3840x2160@120, 0x0, 1.0, vrr, 0"
+      #   "DP-2 ,1920x1200@60, auto-center-right, 1.0, transform, 1"
+      #   ", preferred, auto, 1"
+      # ];
     };
 
     extraConfig = ''

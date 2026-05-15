@@ -4,7 +4,7 @@ hl.config({
     gaps_out = 5,
     border_size = 1,
     col = {
-      active_border = "rgba(294559cc) rgba(295935cc) 45deg",
+      active_border = { colors = {"rgba(294559cc)", "rgba(295935cc)", angle = 45}},
       inactive_border = "rgba(595959aa)",
     },
     layout = "dwindle",
@@ -55,5 +55,34 @@ hl.curve("snappy", {
 
 hl.animation({ leaf = "windows", enabled = true, speed = 1, bezier = "snappy", style = "popin" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 2, bezier = "snappy", style = "slidefade" })
+
+hl.monitor({
+  output = "DP-3",
+  mode = "2560x1440@120",
+  position = "auto-left",
+  scale = "1.0",
+  vrr = 1,
+})
+hl.monitor({
+  output = "HDMI-A-1",
+  mode = "3840x2160@120",
+  position = "0x0",
+  scale = "1.0",
+  vrr = 1,
+})
+hl.monitor({
+  output = "DP-2",
+  mode = "1920x1200@60",
+  position = "auto-center-right",
+  scale = "1.0",
+  transform = 1,
+})
+hl.monitor({
+  output = "",
+  mode = "preferred",
+  position = "auto",
+  scale = "1",
+})
+
 
 return true
