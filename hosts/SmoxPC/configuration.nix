@@ -95,9 +95,18 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    wireplumber.enable = true;
+    # wireplumber.enable = true;
+    extraConfig.pipewire = {
+      "98-crackling-fix" = {
+        "context.properties" = {
+          "default.clock.quantum" = 1024;
+          "default.clock.min-quantum" = 1024;
+          "default.clock.max-quantum" = 8192;
+        };
+      };
+    };
     # If you want to use JACK applications, uncomment this
-    jack.enable = true;
+    # jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
