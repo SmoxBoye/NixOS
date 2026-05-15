@@ -64,7 +64,7 @@ in
         "$mod, B, exec, firefox"
 
         "$mod, G, exec, myna"
-        "$mod, P, exec, hyprctl dispatch dpms off && sleep 6 && hyprctl dispatch dpms on" # Fix my glitchy ass main screen when it flips out
+        "$mod, P, exec, hyprctl dispatch dpms off && sleep 2 && hyprctl dispatch dpms on" # Fix my glitchy ass main screen when it flips out
 
         ", Print, exec, grimblast copy area"
         "Shift_L&$mod, S, exec, grimblast copy area" # Windows muscle memory has cursed me lmao
