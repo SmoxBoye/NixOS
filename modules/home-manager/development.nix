@@ -21,6 +21,9 @@
     #
     wev
     yt-dlp
+    ripgrep
+
+    llama-cpp
   ];
 
   # Clone dotfiles repo to home directory
