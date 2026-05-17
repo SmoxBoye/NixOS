@@ -35,6 +35,8 @@
     nixpkgs-vs.url = "github:NixOS/nixpkgs/pull/512160/head";
 
     # nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+
+    nixcord.url = "github:FlameFlag/nixcord";
   };
   outputs =
     {

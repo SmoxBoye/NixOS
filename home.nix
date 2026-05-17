@@ -27,5 +27,6 @@
     ./modules/home-manager/obs.nix
     ./modules/home-manager/myna.nix
     # ./modules/home-manager/OpenComposite.nix
+    ./modules/home-manager/nixcord.nix
   ];
 }
