@@ -87,11 +87,12 @@ hl.bind(TOGGLE_HOTKEY, function()
                 window = "address:" .. target_win.address 
             })
         )
-        hl.dispatch(resize_to_monitor_percent(80, 70, target_win))
         hl.dispatch(
             hl.dsp.window.center({ 
                 window = "address:" .. target_win.address 
             })
         )
+        hl.dispatch(resize_to_monitor_percent(80, 70, target_win))
+        
     end
 end, { description = "Toggle Music App Scratchpad" })
