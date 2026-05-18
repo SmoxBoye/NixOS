@@ -1,12 +1,8 @@
--- 1. Configuration Constants
--- Swap "Spotify" with your exact app class (e.g., "Cider", "kitty", "firefox")
-local TARGET_APP_CLASS = "com.github.th_ch.youtube_music"
-local TARGET_APP_NAME = "pear-desktop"
+local TARGET_APP_CLASS = "com.github.th_ch.youtube_music" -- Used to find the app
+local TARGET_APP_NAME = "pear-desktop" -- Used to launch the app
 local SPECIAL_WORKSPACE = "special:Music"
 local TOGGLE_HOTKEY     = "SUPER + M"
 
--- 2. Define Initial Window Rules
--- This ensures the app opens directly into your designated special workspace by default.
 hl.config({
     windowrule = {
         { 
@@ -19,25 +15,25 @@ hl.config({
 
 local function resize_to_monitor_percent(width_percent, height_percent, target_win)
     return function()
-        -- Fetch current active monitor data
+        -- Get current monitor for the app
         local monitor = hl.get_monitor(target_win.monitor)
         if not monitor then return end
 
         local display_width = monitor.width
         local display_height = monitor.height
 
+        -- Vertical monitor swaps width and height
         -- 1 = 90 deg, 3 = 270 deg, 5 = flipped 90, 7 = flipped 270
         if monitor.transform == 1 or monitor.transform == 3 or monitor.transform == 5 or monitor.transform == 7 then
-            -- Swap values because the monitor is currently in a vertical/portrait mode
             display_width, display_height = display_height, display_width
         end        
 
-        -- Calculate exact pixel values relative to this specific monitor
+        -- Calculate percentage relative to monitor
         local target_width = math.floor(display_width * (width_percent / 100))
         local target_height = math.floor(display_height * (height_percent / 100))
          
-        -- Apply the exact pixel resizing absolute adjustment
-        hl.dispatch(hl.dsp.focus({ window = "address:" .. target_win.address }))
+        -- Resize
+        hl.dispatch(hl.dsp.focus({ window = "address:" .. target_win.address })) -- Fix for quirky vertical monitor issues
         hl.dispatch(hl.dsp.window.resize({ 
             x = target_width, 
             y = target_height, 
@@ -47,12 +43,12 @@ local function resize_to_monitor_percent(width_percent, height_percent, target_w
     end
 end
 
--- 3. The Dynamic Toggle Logic
+-- Keybind
 hl.bind(TOGGLE_HOTKEY, function()
     local target_win = nil
 
     
-    -- Scan all open windows to locate your app
+    -- Find music app
     for _, win in ipairs(hl.get_windows()) do
         if win.class == TARGET_APP_CLASS then
             target_win = win
@@ -60,25 +56,25 @@ hl.bind(TOGGLE_HOTKEY, function()
         end
     end
 
-    -- Edge case: If the app isn't running yet, launch it.
+    -- Launch app if not already running
     if not target_win then
         hl.dispatch(hl.dsp.exec_cmd(TARGET_APP_NAME))
         return
     end
 
-    -- Grab the workspace you are currently focused on
+    -- Get the apps workspace
     local active_ws = hl.get_active_workspace()
 
-    -- Check if the app is currently on your active workspace
+    -- Is the app with us in this workspace?
     if target_win.workspace.id == active_ws.id or target_win.workspace.name == active_ws.name then
-        -- State A: It is hovering on your current screen. Send it back to the special workspace.
+        -- Send it back to special Music workspace
         hl.dispatch(hl.dsp.window.move({ 
             workspace = SPECIAL_WORKSPACE, 
             window = "address:" .. target_win.address,
             follow = false 
         }))
     else
-        -- State B: It's tucked away. Pull it to your current screen, force it to float, and center it.
+        -- Commandgrab app and put it in our current workspace
         hl.dispatch(
             hl.dsp.window.move({ 
                 workspace = active_ws.name, 
