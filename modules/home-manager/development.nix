@@ -42,9 +42,9 @@
     enable = true;
     shellAliases = {
       # Old nix commands
-      nbs = "sudo nixos-rebuild switch --flake $NIXCONFDIR";
-      nbb = "sudo nixos-rebuild boot --flake $NIXCONFDIR";
-      nbu = "sudo nixos-rebuild switch --upgrade --flake $NIXCONFDIR";
+      # nbs = "sudo nixos-rebuild switch --flake $NIXCONFDIR";
+      # nbb = "sudo nixos-rebuild boot --flake $NIXCONFDIR";
+      # nbu = "sudo nixos-rebuild switch --upgrade --flake $NIXCONFDIR";
       # New nix commands
       nfu = "sudo nix flake update --flake $NIXCONFDIR";
       nos = "nh os switch $NIXCONFDIR --ask --max-jobs 10";
@@ -52,7 +52,7 @@
       nob = "nh os boot $NIXCONFDIR --ask --max-jobs 10";
       nobu = "nh os boot $NIXCONFDIR --ask --update --max-jobs 10";
       nhs = "nh home switch $NIXCONFDIR --ask";
-      nca = "nh clean all -n -k 5 -K 7d";
+      nca = "nh clean all -a -k 5 -K 7d --optimise";
       # haha funny
       bruh = "uvx pycowsay Brrrrrrrrrrrrrrrrrrrrrrrr";
       nconf = "hx $NIXCONFDIR";

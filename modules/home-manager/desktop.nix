@@ -73,6 +73,10 @@
     bc
 
     aria2
+
+    wget
+
+    taskwarrior3
   ];
 
   services.udiskie = {

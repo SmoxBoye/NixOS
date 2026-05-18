@@ -20,7 +20,7 @@
     ./modules/home-manager/development.nix
     ./modules/home-manager/terminal.nix
     ./modules/home-manager/desktop.nix
-    ./modules/home-manager/communication.nix
+    # ./modules/home-manager/communication.nix
     ./modules/home-manager/hyprland/hyprland.nix
     ./modules/home-manager/hyprland/ashell.nix
     ./modules/home-manager/deltatune.nix
