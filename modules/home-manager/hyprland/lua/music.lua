@@ -16,10 +16,6 @@ hl.config({
     }
 })
 
-local function notify(ntext) 
-    hl.notification.create({text = ntext, duration = 3000})
-    
-end 
 
 local function resize_to_monitor_percent(width_percent, height_percent, target_win)
     return function()
@@ -54,14 +50,12 @@ end
 -- 3. The Dynamic Toggle Logic
 hl.bind(TOGGLE_HOTKEY, function()
     local target_win = nil
-    notify("Running command")
 
     
     -- Scan all open windows to locate your app
     for _, win in ipairs(hl.get_windows()) do
         if win.class == TARGET_APP_CLASS then
             target_win = win
-            notify("Found Window")
             break
         end
     end
@@ -69,7 +63,6 @@ hl.bind(TOGGLE_HOTKEY, function()
     -- Edge case: If the app isn't running yet, launch it.
     if not target_win then
         hl.dispatch(hl.dsp.exec_cmd(TARGET_APP_NAME))
-        notify("Creating Window")
         return
     end
 
@@ -84,7 +77,6 @@ hl.bind(TOGGLE_HOTKEY, function()
             window = "address:" .. target_win.address,
             follow = false 
         }))
-        notify("State A")
     else
         -- State B: It's tucked away. Pull it to your current screen, force it to float, and center it.
         hl.dispatch(
@@ -105,6 +97,5 @@ hl.bind(TOGGLE_HOTKEY, function()
                 window = "address:" .. target_win.address 
             })
         )
-        notify("State B")
     end
 end, { description = "Toggle Music App Scratchpad" })
