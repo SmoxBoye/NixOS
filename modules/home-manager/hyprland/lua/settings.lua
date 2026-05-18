@@ -13,12 +13,12 @@ hl.config({
   },
   decoration = {
     blur = {
-      enabled = true,
-      size = 5,
-      passes = 2,
-      new_optimizations = true,
-      ignore_opacity = true,
-      xray = true,
+      enabled = false,
+      -- size = 5,
+      -- passes = 2,
+      -- new_optimizations = true,
+      -- ignore_opacity = true,
+      -- xray = true,
     },
     shadow = {
       enabled = false,
