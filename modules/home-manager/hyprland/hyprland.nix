@@ -45,19 +45,23 @@ in
   };
 
   xdg.configFile = {
-    "hypr/smoxboye/init.lua".source = ./lua/init.lua;
-    "hypr/smoxboye/settings.lua".source = ./lua/settings.lua;
-    "hypr/smoxboye/binds.lua".source = ./lua/binds.lua;
-    "hypr/smoxboye/windowrules.lua".source = ./lua/windowrules.lua;
-    "hypr/smoxboye/startup.lua".source = ./lua/startup.lua;
-    "hypr/smoxboye/music.lua".source = ./lua/music.lua;
     "hypr/xdph.conf".text = ''
       screencopy {
         allow_token_by_default = true
       }
     '';
-  };
-
+  }
+  // (
+    # dynamically source all files in hyprland/lua
+    builtins.listToAttrs (
+      map (name: {
+        name = "hypr/smoxboye/${name}";
+        value = {
+          source = ./lua + "/${name}";
+        };
+      }) (builtins.attrNames (builtins.readDir ./lua))
+    )
+  );
   services.hypridle = {
     enable = true;
     settings = {
