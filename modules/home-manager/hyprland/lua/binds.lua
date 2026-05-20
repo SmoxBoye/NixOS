@@ -1,3 +1,5 @@
+local YTMusic = require("ytmusic")
+
 local mainMod = "SUPER"
 
 local function combo(mods, key)
@@ -41,6 +43,17 @@ bind_exec(mainMod .. " SHIFT", "S", "grimblast copy area")
 
 -- Lock
 bind_exec(mainMod, "L", "hyprlock")
+
+-- Music
+hl.bind("code:172", YTMusic.playpause());
+hl.bind("code:173", YTMusic.previous());
+hl.bind("code:171", YTMusic.next());
+hl.bind(mainMod .. " + code:123", YTMusic.volumeup())
+hl.bind(mainMod .. " + code:122", YTMusic.volumedown())
+
+-- Audio
+hl.bind("code:123", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+"));
+hl.bind("code:122", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"));
 
 -- Focus movement
 bind_dispatch(mainMod, "left", hl.dsp.focus({ direction = "l" }))
