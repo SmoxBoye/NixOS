@@ -1,4 +1,4 @@
-local YTMusic = require("ytmusic")
+local YTMusic = require("smoxboye.ytmusic")
 
 local mainMod = "SUPER"
 
